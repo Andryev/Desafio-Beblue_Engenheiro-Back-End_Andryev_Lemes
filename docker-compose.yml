@@ -1,30 +1,27 @@
-version: '1.0'
+version: '3.2'
 services:
-  postgres:
+  postgres_beblue:
     build:
-      context: postgres
+      context: ./src/main/docker/postgres
     ports:
       - 5432:5432
-    container_name: postgres
-    volumes:
-      - /opt/postgres_home:/var/lib/postgresql/data:z
+    container_name: postgres_beblue
     networks:
       - backend
   beblue-api:
     build:
-      context:
+      context: ./target
+      dockerfile: ../src/main/docker/beblue-api/Dockerfile
     ports:
       - 8080:8080
     container_name: beblue-api
-    volumes:
-      - /opt/beblue:/var/beblue_home:z
     environment:
-      - POSTGRES_URL=postgres
+      - POSTGRES_URL=postgres_beblue
       - POSTGRES_USER=beblue
       - POSTGRES_PASSWORD=bebluepass
       - POSTGRES_DATABASE=beblue
     depends_on:
-      - postgres
+      - postgres_beblue
     networks:
       - backend
 networks:

@@ -1,5 +1,6 @@
 package br.com.beblue.domain.service;
 
+import br.com.beblue.domain.entity.ItemSale;
 import br.com.beblue.domain.entity.Sale;
 import br.com.beblue.domain.repository.SaleRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -50,17 +51,20 @@ public class SaleService {
 
         sale.getItemsSale().forEach(itemSale -> {
             itemSale.setAlbum(albumService.findById(itemSale.getAlbum().getId()).get());
-            itemSale.setAlbumValue(itemSale.getAlbum().getValue().multiply(new BigDecimal(itemSale.getAmount())));
+            itemSale.setAlbumValue(itemSale.getAlbum().getValue());
+            itemSale.setCashbackValue(cashbackService.getCashbackValueItemSale(sale.getSaleDate().getDayOfWeek(), itemSale));
 
-            BigDecimal percentualCashback = cashbackService.getCashback(sale.getSaleDate().getDayOfWeek(), itemSale.getAlbum().getGenre());
-
-            itemSale.setCashbackValue((itemSale.getAlbumValue().multiply(new BigDecimal(itemSale.getAmount()))).multiply(percentualCashback).divide(new BigDecimal(100.00)).setScale(2, RoundingMode.CEILING));
-
-            sale.setCashbackValue(sale.getCashbackValue().add(itemSale.getCashbackValue()).setScale(2, RoundingMode.CEILING));
-            sale.setSaleValue(sale.getSaleValue().add(itemSale.getAlbumValue().multiply(new BigDecimal(itemSale.getAmount()))));
+            sale.setCashbackValue(sale.getCashbackValue().add(itemSale.getCashbackValue()).setScale(2, RoundingMode.FLOOR));
+            sale.setSaleValue(getSaleValue(sale, itemSale));
 
             itemSale.setSale(sale);
         });
         return saleRepository.save(sale);
     }
+
+    private BigDecimal getSaleValue(Sale sale, ItemSale itemSale) {
+        return sale.getSaleValue().add(itemSale.getAlbumValue()).multiply(new BigDecimal(itemSale.getAmount())).setScale(2, RoundingMode.FLOOR);
+    }
+
+
 }
