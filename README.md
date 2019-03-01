@@ -26,7 +26,7 @@ Run: `mvn clean install`
 
 Run: `docker-compose -f docker-compose.yml up --build`
 
-#####Or
+####Or
 Run on your postgres
 
 ```sql
@@ -43,7 +43,7 @@ GRANT ALL PRIVILEGES ON DATABASE beblue TO beblue;
 And 
 Run: `mvn spring-boot:run`
 #### Resources
-#####Albums
+####Albums
 
 * Find Albums
     * Headers: Content-Type application/json
@@ -55,7 +55,7 @@ http://localhost:8080/ws/album?genre=Pop&sort=name,Asc&page=1
     * GET:
 http://localhost:8080/ws/album/1
 
-#####Sales
+####Sales
 * Find Sales
     * Headers: Content-Type application/json
     * GET:
