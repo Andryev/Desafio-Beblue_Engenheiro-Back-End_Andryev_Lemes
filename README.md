@@ -9,18 +9,18 @@
 * [Undertow] - Undertow is a flexible performant web server written in java.
 * [Project Lombok] - Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.
 
-#### Database
+### Database
 
 * [Postgres] 
 
-#### Clone
+### Clone
 Run: `git clone https://github.com/Andryev/Desafio-Beblue_Engenheiro-Back-End_Andryev_Lemes.git`.
 
-#### Build
+### Build
 
 Run: `mvn clean install`.
 
-#### Start
+### Start
 
 Run: `mvn clean install`
 
@@ -42,7 +42,7 @@ GRANT ALL PRIVILEGES ON DATABASE beblue TO beblue;
 ```
 And 
 Run: `mvn spring-boot:run`
-#### Resources
+### Resources
 #### Albums
 
 * Find Albums
