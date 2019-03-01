@@ -1,3 +1,4 @@
+# Created by Andryev Lemes
 FROM maven:3.5-jdk-8-alpine
 
 COPY beblue-0.0.1.jar beblue-api/

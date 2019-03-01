@@ -3,6 +3,7 @@ package br.com.beblue.application.resource;
 import br.com.beblue.domain.entity.Sale;
 import br.com.beblue.domain.service.SaleService;
 import br.com.beblue.infrastructure.constants.URIConstants;
+import br.com.beblue.infrastructure.exception.BeblueSystemException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -44,7 +45,7 @@ public class SaleResource {
     }
 
     @PostMapping
-    public ResponseEntity<Sale> sell(@RequestBody Sale sale) {
+    public ResponseEntity<Sale> sell(@RequestBody Sale sale) throws BeblueSystemException {
         return new ResponseEntity<>(saleService.sell(sale), HttpStatus.CREATED);
     }
 

@@ -1,3 +1,4 @@
+-- Created by Andryev Lemes
 CREATE USER beblue SUPERUSER PASSWORD 'bebluepass';
 CREATE DATABASE "beblue"
   WITH OWNER = postgres

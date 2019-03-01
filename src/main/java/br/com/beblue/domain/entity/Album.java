@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * Album Entity
+ *
  * @author Andryev Lemes - 24/02/2019
  */
 @Data
@@ -40,7 +41,7 @@ public class Album implements Serializable {
     @Column(name = "NAME", nullable = false, length = 150)
     private String name;
 
-    @Column(name = "ID_SPOTIFY" , nullable = false, length = 100)
+    @Column(name = "ID_SPOTIFY", nullable = false, length = 100)
     private String idSpotify;
 
     @Column(name = "ARTIST_NAME", nullable = false, length = 150)

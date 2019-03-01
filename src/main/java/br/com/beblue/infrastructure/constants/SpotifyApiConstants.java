@@ -2,6 +2,7 @@ package br.com.beblue.infrastructure.constants;
 
 /**
  * Constants for Spotify Api
+ *
  * @author Andryev Lemes - 26/02/2019
  */
 public class SpotifyApiConstants {

@@ -1,6 +1,7 @@
 package br.com.beblue.infrastructure.component.listener;
 
 import br.com.beblue.domain.service.integration.SpotifyIntegrationService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  *
  * @author Andryev Lemes - 24/02/2019
  */
+@Slf4j
 @Component
 public class BeblueListener implements ApplicationListener<ApplicationReadyEvent> {
 

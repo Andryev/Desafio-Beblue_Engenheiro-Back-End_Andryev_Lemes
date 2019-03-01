@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 
 /**
  * ItemSale Entity
+ *
  * @author Andryev Lemes - 26/02/2019
  */
 @Data

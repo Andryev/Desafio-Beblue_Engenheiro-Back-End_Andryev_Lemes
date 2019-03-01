@@ -11,6 +11,7 @@ import java.time.DayOfWeek;
 
 /**
  * Cashback Entity
+ *
  * @author Andryev Lemes - 26/02/2019
  */
 @Data

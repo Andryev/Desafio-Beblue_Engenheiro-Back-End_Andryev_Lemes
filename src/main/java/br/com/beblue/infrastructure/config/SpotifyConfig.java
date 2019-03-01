@@ -10,8 +10,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
+
 /**
  * Settings and connection for Spotify Web Api
+ *
  * @author Andryev Lemes - 24/02/2019
  */
 @Slf4j
@@ -36,7 +38,7 @@ public class SpotifyConfig {
             ClientCredentials clientCredentials = clientCredentialsRequest.execute();
             spotifyApi.setAccessToken(clientCredentials.getAccessToken());
         } catch (IOException e) {
-            log.error(e.getMessage(), e);//TODO
+            log.error(e.getMessage(), e);
         } catch (SpotifyWebApiException e) {
             log.error(e.getMessage(), e);
         }

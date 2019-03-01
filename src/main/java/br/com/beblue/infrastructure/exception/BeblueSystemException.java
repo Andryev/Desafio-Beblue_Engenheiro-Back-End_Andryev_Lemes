@@ -8,9 +8,10 @@ import java.util.List;
 
 /**
  * Beblue Exception custom exceptions
+ *
  * @author Andryev Lemes - 25/02/2019
  */
-public class BeblueSystemException extends Throwable {
+public class BeblueSystemException extends Exception {
 
     private static final long serialVersionUID = -868456243429452238L;
 

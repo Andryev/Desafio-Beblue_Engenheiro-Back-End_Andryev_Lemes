@@ -11,7 +11,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-public enum  MessageTypeEnum {
+public enum MessageTypeEnum {
 
     INFO("I", "info"),
     ERROR("E", "error"),

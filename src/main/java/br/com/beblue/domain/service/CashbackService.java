@@ -2,7 +2,6 @@ package br.com.beblue.domain.service;
 
 import br.com.beblue.domain.entity.Cashback;
 import br.com.beblue.domain.entity.ItemSale;
-import br.com.beblue.domain.entity.Sale;
 import br.com.beblue.domain.enumeration.GenreEnum;
 import br.com.beblue.domain.repository.CashbackRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +40,6 @@ public class CashbackService {
                 .multiply(percentageCashback).divide(new BigDecimal(100.00))
                 .setScale(2, RoundingMode.FLOOR);
     }
-
 
 
 }

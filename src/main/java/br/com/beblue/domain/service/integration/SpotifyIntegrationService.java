@@ -3,7 +3,10 @@ package br.com.beblue.domain.service.integration;
 import br.com.beblue.domain.entity.Album;
 import br.com.beblue.domain.enumeration.GenreEnum;
 import br.com.beblue.domain.service.AlbumService;
+import br.com.beblue.infrastructure.constants.MenssageKeyConstants;
 import br.com.beblue.infrastructure.constants.SpotifyApiConstants;
+import br.com.beblue.infrastructure.enumeration.MessageTypeEnum;
+import br.com.beblue.infrastructure.exception.BeblueSystemException;
 import com.wrapper.spotify.SpotifyApi;
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +44,7 @@ public class SpotifyIntegrationService {
         }
     }
 
-    private JSONArray getAlbums(GenreEnum genre)  {
+    private JSONArray getAlbums(GenreEnum genre) throws BeblueSystemException {
         JSONArray albums = null;
         try {
             albums = new JSONArray("[" + spotifyApi.searchAlbums(genre.name())
@@ -51,15 +54,15 @@ public class SpotifyIntegrationService {
                     .getJson() + "]");
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-//            throw  new BeblueSystemException("", MessageTypeEnum.ERROR); //TODO
+            throw new BeblueSystemException(MenssageKeyConstants.SPOTIFY_INTEGRATION_ERROR, MessageTypeEnum.ERROR);
         } catch (SpotifyWebApiException e) {
             log.error(e.getMessage(), e);
-//            throw  new BeblueSystemException("", MessageTypeEnum.ERROR);
+            throw new BeblueSystemException(MenssageKeyConstants.SPOTIFY_INTEGRATION_ERROR, MessageTypeEnum.ERROR);
         }
         return albums;
     }
 
-    private List<Album> parseAlbums(JSONArray object, GenreEnum genre){
+    private List<Album> parseAlbums(JSONArray object, GenreEnum genre) {
         JSONObject json = object.getJSONObject(0).getJSONObject(SpotifyApiConstants.ALBUMS);
 
         return json.getJSONArray(SpotifyApiConstants.ITEMS).toList().stream()
@@ -69,7 +72,7 @@ public class SpotifyIntegrationService {
                             .idSpotify((String) obj.get(SpotifyApiConstants.ID))
                             .name((String) obj.get(SpotifyApiConstants.NAME))
                             .genre(genre)
-                            .artistName( (String) ((Map)((List)obj.get(SpotifyApiConstants.ARTISTS)).get(0)).get(SpotifyApiConstants.NAME))
+                            .artistName((String) ((Map) ((List) obj.get(SpotifyApiConstants.ARTISTS)).get(0)).get(SpotifyApiConstants.NAME))
                             .value(new BigDecimal((Math.random() * ((100.00 - 12.00) + 1)) + 12.00)
                                     .setScale(2, RoundingMode.CEILING))
                             .build();
@@ -80,8 +83,13 @@ public class SpotifyIntegrationService {
 
     private void saveAlbuns() {
 
-        GenreEnum.stream().forEach(item ->{
-            List<Album> albums = parseAlbums(getAlbums(item), item);
+        GenreEnum.stream().forEach(item -> {
+            List<Album> albums = null;
+            try {
+                albums = parseAlbums(getAlbums(item), item);
+            } catch (BeblueSystemException e) {
+                log.error(e.getMessage(), e);
+            }
             albumService.saveAll(albums);
         });
 
