@@ -1,28 +1,29 @@
-# Beblue API - Desafio técnico - Engenheiro back-end
+# Beblue API - Technical challenge - Back-end engineer
 
 [![Build Status](https://travis-ci.org/Andryev/Desafio-Beblue_Engenheiro-Back-End_Andryev_Lemes.svg?branch=master)](https://travis-ci.org/Andryev/Desafio-Beblue_Engenheiro-Back-End_Andryev_Lemes)
-#### Technology
+#### Technologies and libraries
 
 * [Spring Boot] - Spring Boot - Java Back End
 * [Fly Way] - Flyway is an open-source database migration tool. It strongly favors simplicity and convention over configuration.
 * [Maven] - Dependency and build management.
 * [Undertow] - Undertow is a flexible performant web server written in java.
 * [Project Lombok] - Project Lombok is a java library that automatically plugs into your editor and build tools, spicing up your java.
+* [Spotify API] - Web API Wrappers
+* [Logback Project] - Logback Project
+
 
 ### Database
 
 * [Postgres] 
 
 ### Clone
-Run: `git clone https://github.com/Andryev/Desafio-Beblue_Engenheiro-Back-End_Andryev_Lemes.git`.
+Run: `git clone https://github.com/Andryev/Desafio-Beblue_Engenheiro-Back-End_Andryev_Lemes.git`
 
 ### Build
 
-Run: `mvn clean install`.
+Run: `mvn clean install`
 
 ### Start
-
-Run: `mvn clean install`
 
 Run: `docker-compose -f docker-compose.yml up --build`
 
@@ -105,3 +106,5 @@ http://localhost:8080/ws/sale
 [Undertow]: <http://undertow.io>
 [Project Lombok]: <https://projectlombok.org>
 [Postgres]: <https://www.postgresql.org/>
+[Spotify Api]: <https://developer.spotify.com/documentation/web-api/libraries/>
+[Logback Project]: <https://logback.qos.ch/>
